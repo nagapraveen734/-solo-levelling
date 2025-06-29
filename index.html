@@ -16,15 +16,14 @@
             <!-- Firebase SDK (compat version for GitHub Pages) -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-
 <script>
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MSG_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBIG7OGiM-TDQPxM9xU9aQBRrdJWdNswto",
+    authDomain: "sololevelingsystem-f6911.firebaseapp.com",
+    projectId: "sololevelingsystem-f6911",
+    storageBucket: "sololevelingsystem-f6911.appspot.com",
+    messagingSenderId: "489033167130",
+    appId: "1:489033167130:web:f2a9004afb650cb843bca3"
   };
 
   firebase.initializeApp(firebaseConfig);
@@ -34,11 +33,15 @@
     if (user) {
       localStorage.setItem("userEmail", user.email);
       document.getElementById("user-email").textContent = user.email;
+      document.getElementById("login-form").classList.add("hidden");
+      document.getElementById("logout-button").classList.remove("hidden");
+
       if (user.email === "nagapraveenvivot3x@gmail.com") {
         document.getElementById("admin-panel").classList.remove("hidden");
       }
     } else {
       document.getElementById("login-form").classList.remove("hidden");
+      document.getElementById("logout-button").classList.add("hidden");
     }
   });
 
@@ -52,7 +55,6 @@
       })
       .catch(error => alert(error.message));
   }
-
   function logout() {
     auth.signOut().then(() => {
       localStorage.removeItem("userEmail");
@@ -60,6 +62,7 @@
     });
   }
 </script>
+
   </div>
 </body>
 </html>
