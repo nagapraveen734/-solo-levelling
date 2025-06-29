@@ -9,60 +9,27 @@
 <body>
   <div class="container">
     <h1>Welcome to LegendRise ⚔️</h1>
-    <section class="profile">
-      <h2>👤 Your Profile</h2>
-      <p>Email: <span id="user-email"></span></p>
-    </section>
-            <!-- Firebase SDK (compat version for GitHub Pages) -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyBIG7OGiM-TDQPxM9xU9aQBRrdJWdNswto",
-    authDomain: "sololevelingsystem-f6911.firebaseapp.com",
-    projectId: "sololevelingsystem-f6911",
-    storageBucket: "sololevelingsystem-f6911.appspot.com",
-    messagingSenderId: "489033167130",
-    appId: "1:489033167130:web:f2a9004afb650cb843bca3"
-  };
 
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+    <!-- LOGIN FORM (will show if user is NOT signed in) -->
+    <div id="login-form">
+      <h2>🔐 Login</h2>
+      <input id="login-email" placeholder="Email" />
+      <input id="login-password" type="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
 
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      localStorage.setItem("userEmail", user.email);
-      document.getElementById("user-email").textContent = user.email;
-      document.getElementById("login-form").classList.add("hidden");
-      document.getElementById("logout-button").classList.remove("hidden");
+    <!-- LOGOUT BUTTON (will show if signed in) -->
+    <button id="logout-button" class="hidden" onclick="logout()">Logout</button>
 
-      if (user.email === "nagapraveenvivot3x@gmail.com") {
-        document.getElementById("admin-panel").classList.remove("hidden");
-      }
-    } else {
-      document.getElementById("login-form").classList.remove("hidden");
-      document.getElementById("logout-button").classList.add("hidden");
-    }
-  });
+    <!-- DISPLAY EMAIL -->
+    <p>Email: <span id="user-email"></span></p>
 
-  function login() {
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    auth.signInWithEmailAndPassword(email, password)
-      .then(() => {
-        alert("Login Successful");
-        location.reload();
-      })
-      .catch(error => alert(error.message));
-  }
-  function logout() {
-    auth.signOut().then(() => {
-      localStorage.removeItem("userEmail");
-      location.reload();
-    });
-  }
-</script>
-
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel" class="hidden">
+      <h2>🛡️ Admin Panel</h2>
+      <p>You have admin access!</p>
+    </div>
   </div>
 </body>
+
 </html>
